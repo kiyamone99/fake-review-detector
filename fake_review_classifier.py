@@ -1,4 +1,4 @@
-#"""
+"""
 Fake Business Review Detector
 ==============================
 Fine-tunes DistilBERT (or RoBERTa) on a labeled CSV dataset of real vs. fake
@@ -41,7 +41,7 @@ from transformers import (
 CSV_PATH       = "reviews.csv"          # path to your labeled CSV
 TEXT_COL       = "text"                 # column containing review text
 LABEL_COL      = "label"               # column containing 0 (real) / 1 (fake)
-MODEL_NAME     = "distilbert-base-uncased"   # swap for "roberta-base" if preferred
+MODEL_NAME     = "./fake_review_model"
 OUTPUT_DIR     = "./fake_review_model"  # where checkpoints + final model are saved
 MAX_LEN        = 256                    # max token length (256 is plenty for reviews)
 BATCH_SIZE     = 16
@@ -244,8 +244,12 @@ if __name__ == "__main__":
 
     # — Quick smoke-test predictions
     print("\n── Sample Predictions ────────────────────────")
-    predict_review("Best burger I've ever had. The staff was incredibly friendly and the atmosphere was perfect.")
+    predict_review("Amazing food, best restaurant in Charlotte. Highly recommend!")
+    predict_review("Absolutely the most incredible dining experience of my entire life. 10 out of 10!!!")
+    predict_review("The brisket was a little dry but the service was great and the prices were fair.")
+
+    # Push to Hugging Face Hub (optional - uncomment to upload)
+    # from huggingface_hub import login
+    # login(token="hf_your_token_here")
+    # trainer.push_to_hub("your-hf-username/fake-review-detector")
     predict_review("Absolutely phenomenal experience! 5 stars across the board. Highly recommend to everyone!!!")
-from huggingface_hub import login
-login(token="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")
-trainer.push_to_hub("kiyamone/fake-review-detector")
