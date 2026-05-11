@@ -1,18 +1,6 @@
 """
 Fake Business Review Detector
-==============================
-Fine-tunes DistilBERT (or RoBERTa) on a labeled CSV dataset of real vs. fake
-reviews using the Hugging Face Trainer API + PyTorch.
 
-Dataset CSV format expected:
-    text,label
-    "Great food, loved it!",0
-    "Absolutely the best place ever!!!",1
-    ...
-Labels: 0 = real, 1 = fake
-
-Requirements:
-    pip install transformers datasets scikit-learn torch pandas accelerate
 """
 
 import os
